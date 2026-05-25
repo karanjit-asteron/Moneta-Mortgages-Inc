@@ -4,6 +4,25 @@
             mobile menu, scroll effects, animations
 ============================================= */
 
+// ── Favicon Injection ─────────────────────────
+(function injectFavicons() {
+  const favicons = [
+    { rel: 'icon',             href: 'favicon.ico',          attr: { sizes: 'any' } },
+    { rel: 'icon',             href: 'favicon.svg',          attr: { type: 'image/svg+xml' } },
+    { rel: 'icon',             href: 'favicon-48.png',       attr: { type: 'image/png', sizes: '48x48' } },
+    { rel: 'icon',             href: 'favicon-96.png',       attr: { type: 'image/png', sizes: '96x96' } },
+    { rel: 'icon',             href: 'favicon-192.png',      attr: { type: 'image/png', sizes: '192x192' } },
+    { rel: 'apple-touch-icon', href: 'apple-touch-icon.png', attr: { sizes: '180x180' } },
+  ];
+  favicons.forEach(({ rel, href, attr }) => {
+    const link = document.createElement('link');
+    link.rel  = rel;
+    link.href = href;
+    Object.entries(attr).forEach(([k, v]) => link.setAttribute(k, v));
+    document.head.appendChild(link);
+  });
+})();
+
 // ── Component Loader ──────────────────────────
 async function loadComponents() {
   const headerEl = document.getElementById('header-placeholder');
