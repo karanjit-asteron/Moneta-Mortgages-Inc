@@ -8,21 +8,21 @@
 ============================================= */
 
 :root {
-  --bg-primary:       #0c0a09;
-  --bg-secondary:     #131110;
-  --bg-card:          #1a1714;
-  --bg-card-hover:    #201c18;
-  --bg-subtle:        #111009;
+  --bg-primary:       #231c13;
+  --bg-secondary:     #2e2518;
+  --bg-card:          #3a2f20;
+  --bg-card-hover:    #463929;
+  --bg-subtle:        #1e1810;
 
-  --gold:             #c8922a;
-  --gold-light:       #e0b860;
-  --gold-dim:         rgba(200, 146, 42, 0.14);
-  --gold-border:      rgba(200, 146, 42, 0.22);
-  --gold-border-str:  rgba(200, 146, 42, 0.4);
+  --gold:             #d4992e;
+  --gold-light:       #e8c06a;
+  --gold-dim:         rgba(212, 153, 46, 0.15);
+  --gold-border:      rgba(212, 153, 46, 0.24);
+  --gold-border-str:  rgba(212, 153, 46, 0.44);
 
-  --text-primary:     #f0ebe4;
-  --text-secondary:   #a89e94;
-  --text-muted:       #68625c;
+  --text-primary:     #f2ede6;
+  --text-secondary:   #b8a99a;
+  --text-muted:       #7a7068;
   --border:           rgba(200, 146, 42, 0.10);
   --border-str:       rgba(200, 146, 42, 0.22);
 
