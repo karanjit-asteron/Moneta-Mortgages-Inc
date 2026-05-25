@@ -2,36 +2,36 @@
 
 /* =============================================
    MONETA MORTGAGES INC. — Design System
-   Aesthetic: Warm Light Luxury / Financial
+   Aesthetic: Clean Light / Financial
    Fonts: Cormorant Garamond + DM Sans
-   Palette: Warm Parchment + Antique Gold + Dark Accents
+   Palette: Warm White + Gold (#d4992e) + Rich Brown Text
 ============================================= */
 
 :root {
-  --bg-primary:       #f7f2ea;
-  --bg-secondary:     #ede6d8;
-  --bg-card:          #fdf9f4;
-  --bg-card-hover:    #f5eddf;
-  --bg-subtle:        #f2ebe0;
+  --bg-primary:       #ffffff;
+  --bg-secondary:     #fef9f0;
+  --bg-card:          #fffdf8;
+  --bg-card-hover:    #fef6e4;
+  --bg-subtle:        #fdf3d8;
 
   --gold:             #d4992e;
   --gold-light:       #e8b94a;
-  --gold-dim:         rgba(212, 153, 46, 0.10);
-  --gold-border:      rgba(212, 153, 46, 0.28);
-  --gold-border-str:  rgba(212, 153, 46, 0.52);
+  --gold-dim:         rgba(212, 153, 46, 0.12);
+  --gold-border:      rgba(212, 153, 46, 0.32);
+  --gold-border-str:  rgba(212, 153, 46, 0.60);
 
   --text-primary:     #1a1208;
-  --text-secondary:   #5c4e42;
-  --text-muted:       #8c7c70;
-  --border:           rgba(26, 18, 8, 0.08);
-  --border-str:       rgba(26, 18, 8, 0.14);
+  --text-secondary:   #4e3f33;
+  --text-muted:       #8a7260;
+  --border:           rgba(212, 153, 46, 0.18);
+  --border-str:       rgba(212, 153, 46, 0.36);
 
   --font-display:     'Cormorant Garamond', Georgia, serif;
   --font-body:        'DM Sans', system-ui, sans-serif;
 
   --radius:           0;
   --transition:       0.3s ease;
-  --shadow:           0 20px 60px rgba(0, 0, 0, 0.08);
+  --shadow:           0 20px 60px rgba(212, 153, 46, 0.10);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -46,9 +46,8 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-track { background: #ffffff; }
 ::-webkit-scrollbar-thumb { background: var(--gold); }
 
 /* ─── TYPOGRAPHY ─── */
@@ -183,13 +182,13 @@ header {
   top: 0; left: 0; right: 0;
   z-index: 1000;
   height: 80px;
-  background: rgba(247, 242, 234, 0.97);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border-str);
   transition: box-shadow var(--transition);
 }
-header.scrolled { box-shadow: 0 8px 48px rgba(0,0,0,0.10); }
+header.scrolled { box-shadow: 0 8px 40px rgba(212, 153, 46, 0.12); }
 
 .header-inner {
   max-width: 1380px;
@@ -356,18 +355,11 @@ nav.main-nav {
   font-weight: 600;
 }
 
-/* ─── FOOTER — dark accent zone ─── */
+/* ─── FOOTER ─── */
 footer {
-  background: #1e1710;
-  border-top: 1px solid rgba(212, 153, 46, 0.18);
+  background: var(--bg-secondary);
+  border-top: 2px solid var(--gold-border);
   padding: 5rem 0 0;
-  /* Scoped token overrides so all child elements read dark values */
-  --text-primary:   #f2ede6;
-  --text-secondary: #b8a99a;
-  --text-muted:     #7a7068;
-  --border:         rgba(212, 153, 46, 0.10);
-  --border-str:     rgba(212, 153, 46, 0.22);
-  --bg-card:        #2a2218;
 }
 .footer-grid {
   display: grid;
@@ -432,7 +424,7 @@ footer {
 .hero-glow {
   position: absolute;
   width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(212,153,46,0.10) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(212,153,46,0.12) 0%, transparent 65%);
   right: -100px; top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
@@ -441,8 +433,8 @@ footer {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(212,153,46,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212,153,46,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(212,153,46,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,153,46,0.07) 1px, transparent 1px);
   background-size: 72px 72px;
   pointer-events: none;
 }
@@ -738,29 +730,43 @@ footer {
 .author-name { font-size: 0.85rem; font-weight: 500; color: var(--text-primary); display: block; }
 .author-loc  { font-size: 0.74rem; color: var(--text-muted); }
 
-/* ─── CTA BANNER — dark accent zone ─── */
+/* ─── CTA BANNER — gold highlight zone ─── */
 .cta-banner {
-  background: #1e1710;
-  border-top: 1px solid rgba(212, 153, 46, 0.18);
-  border-bottom: 1px solid rgba(212, 153, 46, 0.18);
+  background: var(--gold);
+  border-top: none;
+  border-bottom: none;
   padding: 6rem 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  --text-primary:   #f2ede6;
-  --text-secondary: #b8a99a;
+  --text-primary:   #1a1208;
+  --text-secondary: #3d2c18;
 }
 .cta-banner::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, rgba(212,153,46,0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.18) 0%, transparent 65%);
   pointer-events: none;
 }
 .cta-banner > * { position: relative; z-index: 1; }
 .cta-banner h2 { margin-bottom: 1rem; }
 .cta-banner p  { max-width: 500px; margin: 0 auto 2.5rem; }
 .cta-actions   { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* Buttons inside gold CTA — invert to dark */
+.cta-banner .btn-primary {
+  background: #1a1208;
+  color: #fdf9f4;
+}
+.cta-banner .btn-outline {
+  color: #1a1208;
+  border-color: rgba(26, 18, 8, 0.45);
+}
+.cta-banner .btn-outline:hover {
+  background: rgba(26, 18, 8, 0.10);
+  border-color: rgba(26, 18, 8, 0.70);
+}
 
 /* ─── PAGE HERO (inner pages) ─── */
 .page-hero {
@@ -773,7 +779,7 @@ footer {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 85% 50%, rgba(212,153,46,0.08) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 85% 50%, rgba(212,153,46,0.10) 0%, transparent 50%);
 }
 .page-hero-content { position: relative; z-index: 1; }
 .page-hero .breadcrumb {
@@ -883,7 +889,7 @@ footer {
 .form-field input::placeholder,
 .form-field textarea::placeholder { color: var(--text-muted); }
 .form-field textarea { resize: vertical; min-height: 120px; }
-.form-field select option { background: #f7f2ea; color: var(--text-primary); }
+.form-field select option { background: #ffffff; color: var(--text-primary); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
 /* Contact info items */
