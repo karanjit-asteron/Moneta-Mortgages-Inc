@@ -1,0 +1,82 @@
+name: Deploy Moneta Mortgages (Main)
+
+# Static-site deploy: on every push to `main`, SSH to the server and
+# fast-forward the working tree to origin/main. No build step, no service
+# to restart — nginx serves the files in place.
+#
+# Prerequisites on the server (one-time, before first run):
+#   1. The repo must already be cloned at
+#      /var/www/projects/monetaMortgagesInc.
+#      First-time setup:
+#        sudo mkdir -p /var/www/projects
+#        cd /var/www/projects
+#        sudo git clone <repo-url> monetaMortgagesInc
+#        sudo chown -R www-data:www-data monetaMortgagesInc
+#   2. The SSH key in the GitHub secret ASTERON_SERVER must be authorised on
+#      the server for the `asteron` user (same key the IDX deploy uses).
+#   3. The `asteron` user (or its sudo profile) must be able to `git pull`
+#      inside the app dir. If files are owned by www-data, run
+#      `git config --global --add safe.directory <app-dir>` under the deploy
+#      user, or use sudo as below.
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: moneta-main-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.ASTERON_SERVER }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 2222 -H 207.161.227.240 >> ~/.ssh/known_hosts
+
+      - name: Deploy
+        run: |
+          ssh -p 2222 \
+            -o StrictHostKeyChecking=no \
+            -o ServerAliveInterval=60 \
+            asteron@207.161.227.240 << 'EOF'
+
+            set -e
+
+            echo "=================================================="
+            echo "Moneta Mortgages — Static Site Deploy"
+            echo "=================================================="
+
+            sudo bash -lc '
+              set -euxo pipefail
+
+              APP_DIR="/var/www/projects/monetaMortgagesInc"
+
+              if [ ! -d "$APP_DIR/.git" ]; then
+                echo "ERROR: $APP_DIR is not a git checkout."
+                echo "Run the one-time clone documented in deploy-main.yml first."
+                exit 1
+              fi
+
+              cd "$APP_DIR"
+
+              git fetch origin main
+              git reset --hard origin/main
+              git log -1 --oneline
+
+              echo "Deployed commit:"
+              git rev-parse HEAD
+
+              # If nginx (or whichever process) needs a reload after static-asset
+              # changes, uncomment the appropriate line:
+              # sudo systemctl reload nginx
+            '
+          EOF
